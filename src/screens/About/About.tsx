@@ -3,26 +3,26 @@ import { Text, View, Button } from 'react-native';
 import { Props } from '../../util/interfaces';
 import styles from './styles';
 
+// Styles
 const { container } = styles;
 
-// Screen Home
-class Home extends React.PureComponent<Props, object> {
-  moveAbout = () => {
+// Screen About
+class About extends React.PureComponent<Props, object> {
+  moveHome = () => {
     const {
-      navigation: { navigate }
+      navigation: { goBack }
     } = this.props;
-    navigate('About');
+    goBack();
   };
 
-  // Main Render
   render() {
     return (
       <View style={container}>
-        <Text>Home</Text>
-        <Button title="About" onPress={this.moveAbout} />
+        <Text>About</Text>
+        <Button title="Home" onPress={this.moveHome} />
       </View>
     );
   }
 }
 
-export default Home;
+export default About;
