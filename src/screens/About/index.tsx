@@ -1,3 +1,11 @@
-import About from './About';
+import { connect } from 'react-redux';
 
-export default About;
+import About from './About';
+import { AppState } from '../../redux/reducers';
+
+const mapStateToProps = (state: AppState) => ({
+  user: state.getUser.usersJSON,
+  fetchingUser: state.getUser.fetchingUser
+});
+
+export default connect(mapStateToProps)(About);
