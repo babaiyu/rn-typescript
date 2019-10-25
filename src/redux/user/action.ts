@@ -1,12 +1,6 @@
+import { Dispatch, ActionCreator, AnyAction } from 'redux';
 import { userJSON } from '../../services/apis';
-import {
-  GET_USER,
-  GET_USER_SUCCESS,
-  GET_USER_FAILED,
-  UserJSONState
-} from './types';
-import { Dispatch, ActionCreator, Action, AnyAction } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { GET_USER, GET_USER_SUCCESS, GET_USER_FAILED } from './types';
 
 const getUser = 'getUser';
 

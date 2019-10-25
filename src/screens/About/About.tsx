@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, FlatList } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { Props, State } from './types';
 import styles from './styles';
 
@@ -8,13 +8,6 @@ const { container } = styles;
 
 // Screen About
 class About extends React.PureComponent<Props, State> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      nullArray: new Array(0)
-    };
-  }
-
   // Function
   moveHome = () => {
     const {
@@ -31,18 +24,10 @@ class About extends React.PureComponent<Props, State> {
   );
 
   render() {
-    // const {
-    //   getUser: { usersJSON, fetchingUser }
-    // } = this.props;
-    // const { nullArray } = this.state;
     return (
       <View style={container}>
         <Text>About</Text>
         <Button title="Home" onPress={this.moveHome} />
-        {/* <FlatList
-          data={fetchingUser ? nullArray : usersJSON}
-          renderItem={this.renderItem}
-        /> */}
       </View>
     );
   }
