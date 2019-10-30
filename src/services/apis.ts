@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const USER_JSON = 'https://jsonplaceholder.typicode.com/users';
 
 export function handleResponse(response: Response) {
@@ -17,4 +19,16 @@ export async function userJSON() {
   };
   const response = await fetch(USER_JSON, headers);
   return handleResponse(response);
+}
+
+export async function awokAxios() {
+  const fetch = await axios
+    .get(USER_JSON)
+    .then(res => {
+      const person = res.data;
+      return person;
+    })
+    .catch(err => err);
+
+  return fetch;
 }
