@@ -1,32 +1,22 @@
 import React from 'react';
-import { Text, View, Button, FlatList, Alert } from 'react-native';
-import { Props, State } from './types';
+import { Text, View, Button, FlatList } from 'react-native';
+import { Props } from './types';
 import styles from './styles';
-import { awokAxios } from '../../services/apis';
 
 // Styles
 const { container } = styles;
 
 // Screen About
-class About extends React.PureComponent<Props, State> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      nullArray: []
-    };
+class About extends React.PureComponent<Props, object> {
+  componentDidMount() {
+    this.localGetUser();
   }
 
-  componentDidMount() {
-    awokAxios()
-      .then(res => {
-        const person = res;
-        // Alert.alert('Alert', person);
-        this.setState({ nullArray: person });
-      })
-      .catch(err => {
-        Alert.alert('Alert', err.message);
-      });
-  }
+  // Local Function
+  localGetUser = () => {
+    const { getUserAction } = this.props; // Destructing Assigment for more concise
+    getUserAction(); // Action from Redux
+  };
 
   // Function
   moveHome = () => {
@@ -46,16 +36,17 @@ class About extends React.PureComponent<Props, State> {
   keyExtractor = (item: any, index: number) => index.toString();
 
   render() {
-    const { nullArray } = this.state;
+    const { isLoading, user } = this.props;
     return (
       <View style={container}>
         <Text>About</Text>
         <Button title="Home" onPress={this.moveHome} />
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={nullArray}
+          data={user}
           renderItem={this.renderItem}
         />
+        {isLoading ? <Text>Loading...</Text> : null}
       </View>
     );
   }

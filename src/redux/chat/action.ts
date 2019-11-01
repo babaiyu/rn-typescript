@@ -1,5 +1,6 @@
 import { Message, SEND_MESSAGE, DELETE_MESSAGE } from './types';
 
+// Generate Action for Redux
 export function sendMessage(payload: Message) {
   return {
     type: SEND_MESSAGE,

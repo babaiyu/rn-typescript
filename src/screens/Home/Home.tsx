@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, ScrollView } from 'react-native';
 import { Props, State } from './types';
 import styles from './styles';
 
@@ -29,10 +29,12 @@ class Home extends React.PureComponent<Props, State> {
     navigate('About');
   };
 
+  // Action Local
   actionSendMessage = (user: string, message: string) => {
-    const { sendMessage } = this.props;
+    const { sendMessage } = this.props; // Destruct Assigment the props
     const { timestamp } = this.state;
-    sendMessage({ user, message, timestamp });
+
+    sendMessage({ user, message, timestamp }); // Action from Redux
   };
 
   // Main Render
@@ -41,11 +43,13 @@ class Home extends React.PureComponent<Props, State> {
       chat: { messages }
     } = this.props;
     return (
-      <View style={container}>
-        <Text>Home</Text>
-        <Button title="About" onPress={this.moveAbout} />
-        <Text>{JSON.stringify(messages)}</Text>
-      </View>
+      <ScrollView>
+        <View style={container}>
+          <Text>Home</Text>
+          <Button title="About" onPress={this.moveAbout} />
+          <Text>{JSON.stringify(messages)}</Text>
+        </View>
+      </ScrollView>
     );
   }
 }

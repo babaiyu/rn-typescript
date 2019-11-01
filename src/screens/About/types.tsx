@@ -1,9 +1,8 @@
-import { NavigationScreenProp } from 'react-navigation';
+import { NavigationScreenProp, NavigationState } from 'react-navigation';
 
 export interface Props {
-  navigation: NavigationScreenProp<any, any>;
-}
-
-export interface State {
-  nullArray: any;
+  navigation: NavigationScreenProp<NavigationState>; // Typing Navigation
+  getUserAction: () => void; // Redux Function
+  user: any; // IntelliSense of Redux
+  isLoading: boolean; // IntelliSense of Redux
 }

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 
-import Home from './Home';
-import { AppState } from '../../redux/reducers';
-import { sendMessage } from '../../redux/chat/action';
+import Home from './Home'; // Import Screen
+import { AppState } from '../../redux/reducers'; // For IntelliSense Typing Redux
+import { sendMessage } from '../../redux/chat/action'; // For running hit the Action
 
+// Get the Global State by enter this.props.your-props
 const mapStateToProps = (state: AppState) => ({
   chat: state.chat
 });
