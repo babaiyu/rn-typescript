@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
+import { Text, View, Button, ScrollView, Image } from 'react-native';
 import { Props, State } from './types';
 import styles from './styles';
 
-const { container } = styles;
+const { container, img } = styles;
 
 // Screen Home
 class Home extends React.PureComponent<Props, State> {
@@ -45,6 +45,11 @@ class Home extends React.PureComponent<Props, State> {
     return (
       <ScrollView>
         <View style={container}>
+          <Image
+            source={require('../../assets/img/punipun.jpg')}
+            style={img}
+            resizeMode="cover"
+          />
           <Text>Home</Text>
           <Button title="About" onPress={this.moveAbout} />
           <Text>{JSON.stringify(messages)}</Text>
