@@ -2,12 +2,12 @@ import {
   ChatState,
   SEND_MESSAGE,
   DELETE_MESSAGE,
-  ChatActionTypes
+  ChatActionTypes,
 } from './types';
 
 // Generate State for Redux
 const initialState: ChatState = {
-  messages: []
+  messages: [],
 };
 
 // Create Function for Reducer
@@ -15,14 +15,14 @@ function chatReducer(state = initialState, action: ChatActionTypes): ChatState {
   switch (action.type) {
     case SEND_MESSAGE:
       return {
-        messages: [...state.messages, action.payload]
+        messages: [...state.messages, action.payload],
       };
 
     case DELETE_MESSAGE:
       return {
         messages: state.messages.filter(
-          item => item.timestamp !== action.meta.timestamp
-        )
+          item => item.timestamp !== action.meta.timestamp,
+        ),
       };
 
     default:

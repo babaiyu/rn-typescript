@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'; // I know you know this is for redux
-import { persistStore, persistReducer } from 'redux-persist'; // For save Global State to Local Storage
+import {createStore, applyMiddleware} from 'redux'; // I know you know this is for redux
+import {persistStore, persistReducer} from 'redux-persist'; // For save Global State to Local Storage
 import thunkMiddleware from 'redux-thunk'; // For Middleware
-import { composeWithDevTools } from 'redux-devtools-extension'; // For devtools
+import {composeWithDevTools} from 'redux-devtools-extension'; // For devtools
 import AsyncStorage from '@react-native-community/async-storage'; // Local Storage
 import logger from 'redux-logger'; // Easy Logging
 
@@ -15,14 +15,14 @@ const middlewareEnhancer = applyMiddleware(...middlewares);
 // Configure Local Storage
 const persistObj = {
   key: 'root',
-  storage: AsyncStorage
+  storage: AsyncStorage,
 };
 const persistConfig = persistReducer(persistObj, rootReducer);
 
 // Configure Store
 export const store = createStore(
   persistConfig,
-  composeWithDevTools(middlewareEnhancer)
+  composeWithDevTools(middlewareEnhancer),
 );
 
 // Configure Store

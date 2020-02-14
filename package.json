@@ -7,9 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "prettier": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}",
-    "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./",
-    "lint-fix": "tsc --noEmit && eslint --fix --ext .js,.jsx,.ts,.tsx ./"
+    "tslint": "tslint -p \".\" -t stylish",
+    "typecheck": "tsc --noEmit",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "check-format": "prettier --check \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -26,7 +27,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -41,6 +43,7 @@
     "@types/redux-logger": "^3.0.7",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "babel-jest": "^24.9.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-typescript": "^6.0.0",
     "eslint-config-prettier": "^6.4.0",
@@ -53,6 +56,8 @@
     "pretty-quick": "^2.0.0",
     "react-test-renderer": "16.9.0",
     "redux-tools": "^3.2.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.6.3"
   },
   "jest": {
@@ -68,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && npm run lint"
+      "pre-commit": "npm run prettier"
     }
   }
 }

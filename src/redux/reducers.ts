@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
 // Reducer from any state
 import chatReducer from './chat/reducer';
@@ -7,7 +7,7 @@ import userReducer from './user/reducer';
 // Combine Reducer
 const rootReducer = combineReducers({
   chat: chatReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 // For IntelliSense Redux

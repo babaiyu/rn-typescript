@@ -1,55 +1,64 @@
-import React from 'react';
-import { Text, View, Button, FlatList } from 'react-native';
-import { Props } from './types';
+import React, {useEffect, useState} from 'react';
+import {Text, View, Button, FlatList, Alert} from 'react-native';
+import {Props} from './types';
 import styles from './styles';
 
 // Styles
-const { container } = styles;
+const {container} = styles;
 
 // Screen About
-class About extends React.PureComponent<Props, object> {
-  componentDidMount() {
-    this.localGetUser();
-  }
+const About = (props: Props) => {
+  // Props
+  const {isLoading, user} = props;
+
+  // State
+  const [loadFirst, setLoadFirst] = useState(true);
 
   // Local Function
-  localGetUser = () => {
-    const { getUserAction } = this.props; // Destructing Assigment for more concise
-    getUserAction(); // Action from Redux
+  const localGetUser = () => {
+    const {getUserAction} = props; // Destructing Assigment for more concise
+    getUserAction().then((res: any) => {
+      Alert.alert('Alert', JSON.stringify(res));
+    });
+    setLoadFirst(false);
   };
 
   // Function
-  moveHome = () => {
+  const moveHome = () => {
     const {
-      navigation: { goBack }
-    } = this.props;
+      navigation: {goBack},
+    } = props;
     goBack();
   };
 
   // Flatlist
-  renderItem = ({ item, index }: any) => (
+  const renderItem = ({item, index}: any) => (
     <View key={index}>
       <Text>{item.name}</Text>
     </View>
   );
+  const keyExtractor = (item: any, index: number) => index.toString();
 
-  keyExtractor = (item: any, index: number) => index.toString();
+  // As COMPONENTDIDMOUNT
+  useEffect(() => {
+    if (loadFirst) {
+      localGetUser();
+    }
+  });
 
-  render() {
-    const { isLoading, user } = this.props;
-    return (
-      <View style={container}>
-        <Text>About</Text>
-        <Button title="Home" onPress={this.moveHome} />
-        <FlatList
-          keyExtractor={this.keyExtractor}
-          data={user}
-          renderItem={this.renderItem}
-        />
-        {isLoading ? <Text>Loading...</Text> : null}
-      </View>
-    );
-  }
-}
+  // Main Render
+  return (
+    <View style={container}>
+      <Text>About</Text>
+      <Button title="Home" onPress={moveHome} />
+      <FlatList
+        keyExtractor={keyExtractor}
+        data={user}
+        renderItem={renderItem}
+      />
+      {isLoading ? <Text>Loading...</Text> : null}
+    </View>
+  );
+};
 
 export default About;

@@ -5,9 +5,9 @@ module.exports = {
     'airbnb-typescript',
     'prettier',
     'prettier/@typescript-eslint',
-    'prettier/react'
+    'prettier/react',
   ],
   rules: {
-    'global-require': 'off'
-  }
+    'global-require': 'off',
+  },
 };

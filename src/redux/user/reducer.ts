@@ -3,13 +3,13 @@ import {
   GET_USER_FAILED,
   GET_USER_SUCCESS,
   Action,
-  State
+  State,
 } from './types';
 
 // Generate State in Redux
 const initialState: State = {
   data: [],
-  isLoading: false
+  isLoading: false,
 };
 
 // Function for Reducer
@@ -18,21 +18,21 @@ const userReducer = (state: State = initialState, action: Action): State => {
     case GET_USER:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case GET_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        data: action.data
+        data: action.data,
       };
 
     case GET_USER_FAILED:
       return {
         ...state,
         isLoading: false,
-        data: []
+        data: [],
       };
 
     default:

@@ -1,5 +1,5 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation';
 
 // Import Screens
 import Home from '../screens/Home';
@@ -11,14 +11,14 @@ const Routes = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: {
-        header: null
-      }
+        header: null,
+      },
     },
-    About
+    About,
   },
   {
-    initialRouteName: 'Home'
-  }
+    initialRouteName: 'Home',
+  },
 );
 
 export default createAppContainer(Routes);
